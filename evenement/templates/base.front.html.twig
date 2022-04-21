@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+   
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+<!-- Favicon -->
+<link href="images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
+
+        {% endblock %}
+
+    </head>
+    <body>
+
+           {% block header %}
+ 
+	<div class="preloader"></div>
+	<header class={% block class %}"header-nav menu_style_home_one navbar-scrolltofixed stricky main-menu"{% endblock %}>
+		<div class="container-fluid">
+		    <!-- Ace Responsive Menu -->
+		    <nav>
+		        <!-- Menu Toggle btn-->
+		        <div class="menu-toggle">
+		            <img  class="nav_logo_img img-fluid" src="images/header-logo.png" alt="header-logo.png" >
+		            <button type="button" id="menu-btn">
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		            </button>
+		        </div>
+		        <a href="#" class="navbar_brand float-left dn-smd">
+		            <img class="logo1 img-fluid" src="images/header-logo.png" alt="header-logo.png">
+		            <img class="logo2 img-fluid" src="images/header-logo2.png" alt="header-logo2.png">
+		            <span>beyond travel</span>
+		        </a>
+
+				
+		        <!-- Responsive Menu Structure-->
+		        <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
+		        <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
+		            <li>
+		                <a href="#"><span class="title" >Home</span></a>
+		            </li>
+		            <li>
+		                <a href="#"><span class="title">Hotels</span></a>
+
+		            </li>
+		            <li>
+		                <a href="#"><span class="title">Events</span></a>
+		            </li>
+					<li>
+		                <a href="#"><span class="title">Vol</span></a>
+		            </li>
+					<li>
+		                <a href="#"><span class="title">Offre</span></a>
+		            </li>
+{% if app.user %}	
+					<li>
+		                <a href="#"><span class="title">Reclamation</span></a>
+		            </li>						
+
+
+		        </ul>
+		        
+				
+				
+
+			                
+						
+		
+					
+						<ul class="header_user_notif pull-right dn-smd">	
+							
+							<li class="user_setting">
+						<div class="dropdown">
+						{% if app.user.ImgName is empty %}	
+	                		<a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><img class="rounded-circle" src="images/team/e1.png" alt="e1.png"></a>
+							{% else %}
+							<a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><img class="rounded-circle" src="uploads/images/user/{{ app.user.ImgName }}" alt="e1.png"></a>
+							{% endif %}
+						    <div class="dropdown-menu">
+						    	<div class="user_set_header">
+                                {% if app.user.ImgName is empty %}	
+						    		<img class="float-left rounded-circle" src="images/team/e1.png" alt="e1.png">
+									{% else %}
+									<img class="float-left rounded-circle" src="uploads/images/user/{{ app.user.ImgName }}" alt="e1.png">
+									{% endif %}
+									
+							    	<p>{{ app.user.firstname }} {{ app.user.lastname }}</p>
+						    	</div>
+						    	<div class="user_setting_content">
+									<a class="dropdown-item active" href="/settings">My Profile</a>
+									<a class="dropdown-item" href="{{ path('app_logout') }}">Log out</a>
+						    	</div>
+						    </div>
+						</div>
+			        </li>    
+			</ul>
+			{% else %}
+			<ul class="sign_up_btn pull-right dn-smd mt20">
+				<li><a href="/login" class="btn flaticon-user" > <span class="dn-lg">Login</span></a></li>
+ 				</ul><!-- Button trigger modal -->
+				{% endif %}
+			</nav>
+		</div>
+        </header>
+	<!-- Main Header Nav For Mobile -->
+		<nav id="menu" class="stylehome1">
+			<ul>
+						            <li>
+		                <a href="#"><span class="title" >Home</span></a>
+		            </li>
+		            <li>
+		                <a href="#"><span class="title">Hotels</span></a>
+
+		            </li>
+		            <li>
+		                <a href="#"><span class="title">Events</span></a>
+		            </li>
+					<li>
+		                <a href="#"><span class="title">Vol</span></a>
+		            </li>
+					<li>
+		                <a href="#"><span class="title">Offre</span></a>
+		            </li>
+					<li>
+		                <a href="#"><span class="title">Avis</span></a>
+		            </li>
+					<li>
+		                <a href="#"><span class="title">Reclamation</span></a>
+		            </li>	
+				<li><a href="page-contact.html">Contact</a></li>
+				<li><a href="page-login.html"><span class="flaticon-user"></span> Login</a></li>
+				<li><a href="page-register.html"><span class="flaticon-edit"></span> Register</a></li>
+			</ul>
+		</nav>
+	</div>
+
+{% endblock %}
+
+
+
+        {% block body %}  {% endblock %}
+
+
+
+		<section class="footer_middle_area p0">
+		{% block footer %}
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-md-3 col-lg-3 col-xl-3 pb15 pt15">
+					<div class="logo-widget home1">
+						<img class="img-fluid" src="images/header-logo.png" alt="header-logo.png">
+						<span>BEYOND TRAVEL</span>
+					</div>
+				</div>
+				<div class="col-sm-8 col-md-5 col-lg-6 col-xl-5 pb25 pt25 brdr_left_right">
+					<div class="footer_menu_widget">
+						<ul>
+							<li class="list-inline-item"><a href="#">Home</a></li>
+							<li class="list-inline-item"><a href="#">Privacy</a></li>
+							<li class="list-inline-item"><a href="#">Terms</a></li>
+							<li class="list-inline-item"><a href="#">Sitemap</a></li>
+							<li class="list-inline-item"><a href="#">Purchase</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-4 col-lg-3 col-xl-4 pb15 pt15">
+					<div class="footer_social_widget mt15">
+						<ul>
+							<li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+							<li class="list-inline-item"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+							<li class="list-inline-item"><a href="#"><i class="fa fa-google"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="footer_bottom_area pt25 pb25">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 offset-lg-3">
+					<div class="copyright-widget text-center">
+						<p>Copyright BEYOND TRAVEL © 2022. All Rights Reserved.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		 {% endblock %}
+	</section>
+  <a class="scrollToHome" href="#"><i class="flaticon-up-arrow-1"></i></a>
+
+        
+
+        {% block javascripts %}
+<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-3.0.0.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.mmenu.all.js"></script>
+<script type="text/javascript" src="js/ace-responsive-menu.js"></script>
+<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="js/isotop.js"></script>
+<script type="text/javascript" src="js/snackbar.min.js"></script>
+<script type="text/javascript" src="js/simplebar.js"></script>
+<script type="text/javascript" src="js/parallax.js"></script>
+<script type="text/javascript" src="js/scrollto.js"></script>
+<script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
+<script type="text/javascript" src="js/jquery.counterup.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/progressbar.js"></script>
+<script type="text/javascript" src="js/slider.js"></script>
+<script type="text/javascript" src="js/timepicker.js"></script>
+<!-- Custom script for all pages --> 
+<script type="text/javascript" src="js/script.js"></script>
+
+        {% endblock %}
+</body>
+</html>

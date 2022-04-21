@@ -1,0 +1,43 @@
+
+{% extends 'base.back.html.twig' %}
+
+{% block title %}Event liste{% endblock %}
+
+{% block body %}
+<section id="main-content">
+<section class="wrapper site-min-height">
+        <div class="row">
+          <div class="col-lg-12">
+
+{% for c in events %}
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div class="custom-box">
+                <div class="icn-main-container">
+                  <img src="uploads/images/events/{{ c.image }}" height="200" width="200">
+                </div>
+                <ul class="pricing">
+               <li>Nom : {{ c.nom }}</li>
+                <li>Type : {{ c.typeevent }}</li>
+                <li>Date : {{ c.getDateEvent()|date('d-m-Y') }}</li>
+                <li>Capavité : {{ c.capacite }}</li>
+                <li>Prix : {{ c.prix }}</li>
+                </ul>
+                                <ul class="pricing">
+                </ul>
+                <a class="btn btn-theme" href="{{ path( 'update' , {'id':c.idEvent} )}}">Modifier</a>
+                <a class="btn btn-theme" href="{{ path( 'delete_events' , {'id':c.idEvent} )}}">Suprimer</a>
+              </div>
+              <!-- end custombox -->
+            </div>
+            {% endfor %}
+            <!-- end col-4 -->
+  
+            <!-- end col-4 -->
+          </div>
+          <!--  /col-lg-12 -->
+        </div>
+        <!--  /row -->
+      </section>
+      </section>
+{% endblock %}
